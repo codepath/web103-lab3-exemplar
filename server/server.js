@@ -1,22 +1,20 @@
 import express from 'express'
-import bodyParser from 'body-parser'
+import './config/dotenv.js'
 import cors from 'cors'
 import giftsRouter from './routes/gifts.js'
 
-// initalizie express
-const app = express();
+const app = express()
 
-// middleware
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json({extended: true}));
 app.use(cors())
 
-// routes
 app.use('/gifts', giftsRouter)
 
+app.get('/', (req, res) => {
+  res.status(200).send('<h1 style="text-align: center; margin-top: 50px;">UnEarthed API</h1>')
+})
 
-// listens for app on port 300 for connections
-const PORT = 3000;
+const PORT = process.env.PORT || 3001
+
 app.listen(PORT, () => {
-  console.log(`CONNECTED. Listing on port ${PORT}`)
+  console.log(`🚀 Server listening on http://localhost:${PORT}`)
 })

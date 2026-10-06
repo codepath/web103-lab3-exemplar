@@ -15,16 +15,12 @@ const App = () => {
   useEffect(() => {
 
     const fetchGifts = async () => {
-
-      const url = 'http://localhost:3000/gifts/'
-      const response = await fetch(url);
-      const json = await response.json();
-
-      setGifts(json);
-      return json;
+      const response = await fetch('/gifts')
+      const data = await response.json()
+      setGifts(data)
     }
 
-    fetchGifts();
+    fetchGifts()
 
   }, []);
 

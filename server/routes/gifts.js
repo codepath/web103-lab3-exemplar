@@ -1,9 +1,10 @@
 import express from 'express'
-import { getGifts } from '../controllers/gifts.js'
+import GiftsController from '../controllers/gifts.js'
 
 const router = express.Router()
 
-// GET /gifts/
-router.get('/', getGifts)
+router.get('/', GiftsController.getGifts)
+
+router.get('/:giftId', GiftsController.getGiftById)
 
 export default router
